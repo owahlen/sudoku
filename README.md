@@ -1,15 +1,16 @@
 # Sudoku solver
-
-Solves a sudoku riddle passed via command line.
+This is a solver for sudoku puzzles.
+It reads the puzzle from a JSON file.
+See [board.json](board.json) for an example.
 
 ## Running
 To run the application:
 ```bash
-go run main.go
+go run main.go board.json
 ```
 
-To build an executable run:
-
+To build and run a standalone executable:
 ```bash
 go build
+./sudoku board.json
 ```

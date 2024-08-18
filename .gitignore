@@ -87,3 +87,6 @@ Temporary Items
 .apdisk
 .env.local
 .env
+
+# Build artifacts
+sudoku

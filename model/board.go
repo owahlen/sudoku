@@ -71,3 +71,19 @@ func (b *Board) LoadFromFile(filename string) error {
 func (b *Board) LoadFromJSON(data []byte) error {
 	return json.Unmarshal(data, b)
 }
+
+// Clone creates a deep copy of the Board
+func (b *Board) Clone() *Board {
+	clone := NewBoard()
+	for i := 0; i < 9; i++ {
+		for j := 0; j < 9; j++ {
+			if b.Grid[i][j].IsEmpty() {
+				clone.Grid[i][j] = Cell{Value: nil}
+			} else {
+				val := *b.Grid[i][j].Value
+				clone.Grid[i][j] = Cell{Value: &val}
+			}
+		}
+	}
+	return clone
+}

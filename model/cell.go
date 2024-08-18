@@ -5,7 +5,7 @@ import (
 	"errors"
 )
 
-// Cell represents a single cell in the Board, which can be either empty or hold a value (1-9)
+// Cell represents a single cell in the Board, which can be either empty or hold a value (0-9)
 type Cell struct {
 	Value *int
 }
