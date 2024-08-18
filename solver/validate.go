@@ -2,7 +2,7 @@ package solver
 
 import "sudoku/model"
 
-// ValidateBoard checks if each digit 0-9 occurs only once in each row and each column
+// ValidateBoard checks if each digit 1-9 occurs only once in each row and each column
 func ValidateBoard(board *model.Board) bool {
 	// Check each row
 	for row := 0; row < 9; row++ {
