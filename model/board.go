@@ -8,7 +8,7 @@ import (
 
 // Board represents a 9x9 grid of Cells
 type Board struct {
-	grid [9][9]Cell `json:"grid"` // Use JSON tags to define the JSON structure
+	Grid [9][9]Cell `json:"grid"` // Use JSON tags to define the JSON structure
 }
 
 // NewBoard creates a new empty Board
@@ -21,7 +21,7 @@ func (b *Board) SetCell(row, col, value int) error {
 	if row < 0 || row >= 9 || col < 0 || col >= 9 {
 		return errors.New("row and column must be between 0 and 8")
 	}
-	return b.grid[row][col].SetValue(value)
+	return b.Grid[row][col].SetValue(value)
 }
 
 // ClearCell clears a cell in the Board, making it empty
@@ -29,7 +29,7 @@ func (b *Board) ClearCell(row, col int) error {
 	if row < 0 || row >= 9 || col < 0 || col >= 9 {
 		return errors.New("row and column must be between 0 and 8")
 	}
-	b.grid[row][col].Clear()
+	b.Grid[row][col].Clear()
 	return nil
 }
 
@@ -38,17 +38,17 @@ func (b *Board) GetCell(row, col int) (int, error) {
 	if row < 0 || row >= 9 || col < 0 || col >= 9 {
 		return 0, errors.New("row and column must be between 0 and 8")
 	}
-	return b.grid[row][col].GetValue()
+	return b.Grid[row][col].GetValue()
 }
 
 // PrintBoard prints the Board to the console
 func (b *Board) PrintBoard() {
 	for i := 0; i < 9; i++ {
 		for j := 0; j < 9; j++ {
-			if b.grid[i][j].IsEmpty() {
+			if b.Grid[i][j].IsEmpty() {
 				fmt.Print(". ") // Print a dot for empty cells
 			} else {
-				val, _ := b.grid[i][j].GetValue()
+				val, _ := b.Grid[i][j].GetValue()
 				fmt.Printf("%d ", val)
 			}
 		}

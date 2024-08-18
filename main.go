@@ -1,23 +1,39 @@
 package main
 
 import (
+	"log"
 	"sudoku/model"
 )
 
 func main() {
+	boardJson := getBoardJsonString()
 	board := model.NewBoard()
 
-	// Example: Set some cells to specific values
-	board.SetCell(0, 0, 5)
-	board.SetCell(1, 1, 3)
-	board.SetCell(2, 2, 6)
-	board.SetCell(3, 3, 7)
-	board.SetCell(4, 4, 1)
-	board.SetCell(5, 5, 9)
-	board.SetCell(6, 6, 5)
-	board.SetCell(7, 7, 2)
-	board.SetCell(8, 8, 4)
+	err := board.LoadFromJSON([]byte(boardJson))
+	if err != nil {
+		log.Fatalf("Error loading board from JSON: %v", err)
+	}
 
 	// Print the Board
 	board.PrintBoard()
+}
+
+func getBoardJsonString() string {
+	// Example JSON data representing a 9x9 board
+	jsonData := `
+	{
+		"grid": [
+			[5, 3, null, null, 7, null, null, null, null],
+			[6, null, null, 1, 9, 5, null, null, null],
+			[null, 9, 8, null, null, null, null, 6, null],
+			[8, null, null, null, 6, null, null, null, 3],
+			[4, null, null, 8, null, 3, null, null, 1],
+			[7, null, null, null, 2, null, null, null, 6],
+			[null, 6, null, null, null, null, 2, 8, null],
+			[null, null, null, 4, 1, 9, null, null, 5],
+			[null, null, null, null, 8, null, null, 7, 9]
+		]
+	}
+	`
+	return jsonData
 }
