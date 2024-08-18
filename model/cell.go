@@ -1,10 +1,32 @@
 package model
 
-import "errors"
+import (
+	"encoding/json"
+	"errors"
+)
 
 // Cell represents a single cell in the Board, which can be either empty or hold a value (1-9)
 type Cell struct {
-	Value *int `json:"value"` // Use JSON tags to define how this field will be represented in JSON
+	Value *int
+}
+
+// UnmarshalJSON customizes the unmarshalling of a Cell from JSON
+func (c *Cell) UnmarshalJSON(data []byte) error {
+	// If the data is "null", set the cell as empty
+	if string(data) == "null" {
+		c.Value = nil
+		return nil
+	}
+
+	// Otherwise, unmarshal the number into the cell's value
+	var v int
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+
+	// Set the cell's value
+	c.Value = &v
+	return nil
 }
 
 // IsEmpty checks if the cell is empty

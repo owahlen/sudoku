@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"os"
 )
 
 // Board represents a 9x9 grid of Cells
@@ -54,6 +55,16 @@ func (b *Board) PrintBoard() {
 		}
 		fmt.Println()
 	}
+}
+
+// LoadFromFile loads the Board from a JSON file
+func (b *Board) LoadFromFile(filename string) error {
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		return err
+	}
+
+	return b.LoadFromJSON(data)
 }
 
 // LoadFromJSON loads the Board from a JSON string
