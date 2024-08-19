@@ -33,15 +33,14 @@ func ValidateBoard(board *model.Board) bool {
 func validateRow(board *model.Board, row int) bool {
 	seen := make(map[int]bool)
 	for column := 0; column < 9; column++ {
-		cell := board.Grid[row][column]
-		if cell.IsEmpty() {
+		value := board.Grid[row][column]
+		if value == 0 {
 			continue
 		}
-		val := *cell.Value
-		if seen[val] {
+		if seen[value] {
 			return false // Duplicate found in row
 		}
-		seen[val] = true
+		seen[value] = true
 	}
 	return true
 }
@@ -49,15 +48,14 @@ func validateRow(board *model.Board, row int) bool {
 func validateColumn(board *model.Board, column int) bool {
 	seen := make(map[int]bool)
 	for row := 0; row < 9; row++ {
-		cell := board.Grid[row][column]
-		if cell.IsEmpty() {
+		value := board.Grid[row][column]
+		if value == 0 {
 			continue
 		}
-		val := *cell.Value
-		if seen[val] {
+		if seen[value] {
 			return false // Duplicate found in row
 		}
-		seen[val] = true
+		seen[value] = true
 	}
 	return true
 }
@@ -66,15 +64,14 @@ func validateSubGrid(b *model.Board, subGridRow int, subGridColumn int) bool {
 	seen := make(map[int]bool)
 	for row := subGridRow * 3; row < subGridRow*3+3; row++ {
 		for column := subGridColumn * 3; column < subGridColumn*3+3; column++ {
-			cell := b.Grid[row][column]
-			if cell.IsEmpty() {
+			value := b.Grid[row][column]
+			if value == 0 {
 				continue
 			}
-			val := *cell.Value
-			if seen[val] {
+			if seen[value] {
 				return false // Duplicate found in row
 			}
-			seen[val] = true
+			seen[value] = true
 		}
 	}
 	return true

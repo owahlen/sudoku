@@ -40,7 +40,7 @@ func SolveBoard(board *model.Board) (solvedBoard *model.Board, err error) {
 func findFirstEmptyCell(board *model.Board) (row, column int, found bool) {
 	for row := 0; row < 9; row++ {
 		for column := 0; column < 9; column++ {
-			if board.Grid[row][column].IsEmpty() {
+			if board.Grid[row][column] == 0 {
 				return row, column, true
 			}
 		}
